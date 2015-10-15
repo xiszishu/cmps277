@@ -1,0 +1,142 @@
+\documentclass{article}
+\usepackage{times}
+\usepackage{amssymb}
+\usepackage{subfigure}
+\renewcommand\thesubsection{\thesection.\alph{subsection}}
+
+\begin{document}
+
+\title{CPMS277 Homework 1}
+\author{Xiao Liu\\
+  \emph{xiszishu@ucsc.edu}}
+\date{\today}
+\maketitle
+
+\section{}
+The number of distinct relations are:\\
+\begin{center}
+$2^{\prod\limits_{i=1}^{k}(n_{i}+1)}$
+\end{center}
+In each tuple, it can choose from all the elements of each attribute or no element which are $n_{i}+1$ choices. So the number of all the tuples is the product of all the possible choices from each attribute. And we can decide whether the tuple is in the relation.\\
+
+\section{}
+
+Let $S=\phi$ and $R\neq\phi$\\
+Then $\pi_{A}(R\times S)=\phi\neq\pi_{A}(R)$\\
+Therefore  the statement $\pi_{A}(R\times S)=\pi_{A}(R)$ is false\\
+
+\section{}
+$R/S=\pi_{A_{1},...,A_{m}}(R)-\pi_{A_{1},...,A_{m}}(\pi_{A_{1},...,A_{m}}(R)\times S-R)$
+
+\section{}
+Selection monotone proof:\\
+Suppose there is a selection $\sigma_{A}$,and two relations: $R_{1}\subseteq R_{2}$\\
+If $\mu$ is a random tuple in $\sigma_{A}(R_{1})$, then $\mu$ is in $R_{2}$.\\
+In addition, $\mu$ satisfies condition $A$, thus $\mu$ is in $\sigma_{A}(R_{2})$.\\
+Given that $\mu$ is a random tuple, this proof applies to all the tuples in $\sigma_{A}(R_{1})$, statement $\sigma_{A}(R_{1})\subseteq \sigma_{A}(R_{2})$ is tenable.\\
+\\
+Projection monotone proof:\\
+Suppose there is a projection $\pi_{A}$,$A$ is an attribute list has one or multiple attributes,and two relations: $R_{1}\subseteq R_{2}$.\\
+If $\mu$ is a random tuple in $\pi_{A}(R_{1})$, since $R_{1}$ has same attributes with $R_{2}$, then $\mu$ shares same attributes with $R_{2}$.\\
+In addition, $\mu$ has the same attributes in the list $A$, thus $\mu$ is in $\pi_{A}(R_{2})$.\\
+Given that $\mu$ is a random tuple, this proof applies to all the tuples in $\pi_{A}(R_{1})$, statement $\pi_{A}(R_{1})\subseteq \pi_{A}(R_{2})$ is tenable.\\
+\\
+Join monotone proof:\\
+Suppose there is an arbitrary relation $S$, and two relations: $R_{1}\subseteq R_{2}$.\\
+If $\mu$ is a random tuple in $R_{1}\ltimes S$, $\mu$ is in $R_{1}$, then $\mu$ is in $R_{2}$.\\
+In addition, $\mu$ shares same attributes with $S$, thus $\mu$ is in $R_{2}\ltimes S$.\\
+Given that $\mu$ is a random tuple, this proof applies to all the tuples in $R_{1}\ltimes S$, statement $(R_{1}\ltimes S) \subseteq (R_{2}\ltimes S)$ is tenable.\\
+This proof could be applied to semijoin and thetajoin easily.\\
+\\
+Union monotone proof:\\
+Suppose there is an arbitrary relation $S$, and two relations: $R_{1}\subseteq R_{2}$.\\
+If $\mu$ is a random tuple in $R_{1}\cup S$, then $\mu$ is whether in $R_{1}$ or $S$.\\
+1. If $\mu$ is in $R_{1}$, then $\mu$ is in $R_{2}$, thus  $\mu$ is in $R_{2}\cup S$.\\
+2. If $\mu$ is in $S$, then $\mu$ is in $R_{2}\cup S$.\\
+So in both conditions,  $\mu$ is eventually in $R_{2}\cup S$.\\
+Given that $\mu$ is a random tuple, this proof applies to all the tuples in $R_{1}\cup S$, statement $(R_{1}\cup S)\subseteq (R_{2}\cup S)$ is tenable.\\
+\\
+Difference monotone disproof:\\
+Suppose $R_{1}=R_{1}^{*}$ and $R_{2}=R_{2}^{*}$, the domains of these 4 relational schemas is all the alphabets.\\
+Thus, we have $R_{1}\subseteq R_{1}^{*}$ and $R_{2}\subseteq R_{2}^{*}$.\\
+Let $r_{1}$,$r_{2}$,$r_{1}^{*}$ and $r_{2}^{*}$ be the relations of $R_{1}$,$R_{2}$,$R_{1}^{*}$ and $R_{2}^{*}$ respectively.\\
+Suppose
+\begin{table}[htbp]
+\begin{minipage}{.3\linewidth}
+\centering
+\begin{tabular}{|c|c|}
+\hline 
+$r_{1}$ &  A \\
+\hline
+& a  \\
+& b  \\
+& c  \\
+& d  \\
+& e  \\
+\hline 
+\end{tabular}
+\end{minipage}\begin{minipage}{.3\linewidth}  
+\centering
+\begin{tabular}{|c|c|}
+\hline 
+$r_{2}$ & A \\
+\hline
+& a  \\
+& b  \\
+& c  \\
+\hline 
+\end{tabular}
+\end{minipage}\begin{minipage}{.3\linewidth}
+\centering
+\begin{tabular}{|c|c|}
+\hline
+$r_{1}^{*}$ & A \\
+\hline
+& a  \\
+& b  \\
+& c  \\
+& d  \\
+& e  \\
+\hline
+\end{tabular}
+\end{minipage}\begin{minipage}{.3\linewidth}
+\centering
+\begin{tabular}{|c|c|}
+\hline
+$r_{2}^{*}$ & A \\
+\hline
+& a  \\
+& b  \\
+& c  \\
+& d  \\
+\hline
+\end{tabular}
+\end{minipage}
+
+\end{table}
+\\
+Thus we have $r_{1}\subseteq r_{1}^{*}$ and $r_{2}\subseteq r_{2}^{*}$.\\
+Cleanly, $r_{1}-r_{2}\notin r_{1}^{*}-r_{2}^{*}$.\\
+Therefore, difference is not monotone.\\
+\\
+Given the 5 proofs above, difference query is not monotone while SPJU queries are monotone, difference of $r_{1}$ and $r_{2}$ cannot be expressed with the relational algebra operators: select,project,join and union.
+
+
+\section{}
+\subsection{}
+$R\ltimes S=\pi_{attr(R)}(R\bowtie S)$
+\subsection{}
+If $R$ and $S$ share no common attributes, then $R\bowtie S=\phi$\\
+Therefore $R\ltimes S=\phi$\\
+\subsection{}
+No\\
+Cartesian product could bring new attributes to a relation.\\
+While select, project, difference, semijoin and union could not.Even though rename could change attributes' name, it cannot bring new attribute to the relation either.\\
+In another way, we cannot use the replaced operators to express cartesian product, also shows the result is relationally incomplete.\\
+
+\subsection{}
+No\\
+Even though both difference and intersect could decrease the number of tuples in a relation, but the difference is still irreplaceable. You can only use difference to get the tuples that is unique in multiple relations.\\
+Besides, difference is one of the fundamental operator, cannot be replaced by other fundamental or non-fundamental operator.\\
+
+\end{document}
