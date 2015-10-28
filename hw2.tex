@@ -1,0 +1,57 @@
+\documentclass{article}
+\usepackage{times}
+\renewcommand\thesubsection{\thesection.\alph{subsection}}
+
+\title{homework2}
+\author{Xiao Liu}
+\date{October 2015}
+
+\begin{document}
+
+\maketitle
+
+\section{}
+\subsection{}
+No,there is not.\\
+\subsection{}
+2 homomorphisms\\
+$x_{1}\rightarrow x_{1},x_{4}\rightarrow x_{2},x_{2}\rightarrow x_{2},x_{2}\rightarrow x_{2},x_{3}\rightarrow x_{1},x_{5}\rightarrow x_{1},x_{6}\rightarrow x_{2}$ \\
+$x_{1}\rightarrow x_{1},x_{4}\rightarrow x_{2},x_{2}\rightarrow x_{2},x_{2}\rightarrow x_{2},x_{3}\rightarrow x_{1},x_{5}\rightarrow x_{3},x_{6}\rightarrow x_{4}$ \\
+\subsection{}
+$Q_{1}\subseteq Q_{2}$\\
+Proof:\\
+According to (a) and (b), there are homomorphisms from $I^{Q_{2}}$ to $I^{Q_{1}}$\\
+According to the homomorphism theorem:\\
+\begin{center}
+  $Q_{1}\subseteq Q_{2}$
+\end{center}
+\subsection{}
+No, the minimal conjunctive query should be $Q_{1}:A(x_{1},x_{2}):-R(x_{1},x_{2})$.\\
+\section{}
+Assume graph H is 3-colorable if and only tuple $t\subseteq Q(D_{K3})$.\\
+Where Q is the query that ``correspond'' to the graph H.\\
+$Q':A():\textendash R(u_{1},v_{1}),..,R(u_{k},v_{k})$\\
+$Q:A():\textendash R(c_{1},c_{2}),R(c_{2},c_{1}),R(c_{1},c_{3}),R(c_{3},c_{1}),R(c_{3},c_{2}),R(c_{2},c_{3})$\\
+Thus, the $t\subseteq Q(D)$ could be transformed in ploynomial complexity into 3-colorable problem, which is NP hardness.\\
+
+\section{}
+Proof:\\
+Assume: there exists a homomorphism from $I^{Q}$ to $I^{Q_{m}}$ which is not onto.\\
+Thus, for some facts $S(\bar{x}^{c})$ of $I^{Q_{m}}$, there is no fact $S(\bar{y}^{c})$ of $I^{Q}$ such that $S(h(\bar{y}^{c}))=S(\bar{x}^{c})$.\\
+Thus we eliminate these facts to form a new instance $I^{Q_{m}'}$.\\
+There exits a homomorphism from $I^{Q_{m}}$ to $I^{Q_{m}'}$, means $I^{Q_{m}'}$ is a smaller query to $I^{Q_{m}}$, disprove the assumption.\\
+Thus, every homomorphism from $I^{Q}$ to $I^{Q_{m}}$ is an onto homomorphism.\\
+\section{}
+\subsection{}
+The minimal conjunctive query of Q is: $Q_{m}(x):\textendash E(x,x)$.\\
+One possible assignment is:\\
+$u\rightarrow x, x\rightarrow x,v\rightarrow u,w\rightarrow x,y \rightarrow x$\\
+There mush be at least one formula in the body of conjunctive query.\\
+\subsection{}
+$Q'(x):\textendash E(u,x),E(x,x)$\\
+One possible assignment is:\\
+$u\rightarrow u, x\rightarrow x,v\rightarrow u, w\rightarrow u,y \rightarrow x$\\
+Thus the number of subgoals in $Q'$ is same as in $Q$. $Q'$ is homomorphism but not isomorphic to $Q$.\\ 
+Clearly $Q'$ is not minial, subset ofsubgoals of $Q'$ is same as $Q_{m}$\\
+
+\end{document}
